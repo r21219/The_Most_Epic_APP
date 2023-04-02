@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
-
+//Todo requires adding methods and attributes
 @Entity
 @Table(name = "todos")
 public class Todo {
