@@ -9,9 +9,6 @@
         <module name="project_Todo-HolecekP_HrtonM" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="project_Todo-HolecekP_HrtonM" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
