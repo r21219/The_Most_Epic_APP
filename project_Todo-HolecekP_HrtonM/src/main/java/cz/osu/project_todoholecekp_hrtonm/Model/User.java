@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 //Todo requires adding methods and attributes
 @Entity
@@ -16,8 +17,16 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.EAGER)
-    @JoinColumn (name = "todo_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Todo> todo;
+
+    public User() {
+        todo = new ArrayList<>();
+    }
+
+    public User(String name, String password, List<Todo> todo) {
+        this.name = name;
+        this.password = password;
+        this.todo = todo;
+    }
 }
