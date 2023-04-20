@@ -2,27 +2,27 @@ package cz.osu.project_todoholecekp_hrtonm.Service;
 
 import cz.osu.project_todoholecekp_hrtonm.Exception.RecordNotFoundException;
 import cz.osu.project_todoholecekp_hrtonm.Model.Task;
-import cz.osu.project_todoholecekp_hrtonm.Model.Todo;
+import cz.osu.project_todoholecekp_hrtonm.Model.Category;
 import cz.osu.project_todoholecekp_hrtonm.Repository.TaskRepository;
-import cz.osu.project_todoholecekp_hrtonm.Repository.TodoRepository;
+import cz.osu.project_todoholecekp_hrtonm.Repository.CategoryRepository;
 
 import java.util.List;
 
 public class TaskServiceImpl implements TaskService{
     TaskRepository taskRepository;
-    TodoRepository todoRepository;
+    CategoryRepository categoryRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository, TodoRepository todoRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, CategoryRepository categoryRepository) {
         this.taskRepository = taskRepository;
-        this.todoRepository = todoRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
     public Task create(Task newTask) {
-        Todo todo = todoRepository.findById(newTask.getTodo().getId()).orElseThrow(() ->
-                new RecordNotFoundException("Todo not found."));
+        Category category = categoryRepository.findById(newTask.getCategory().getId()).orElseThrow(() ->
+                new RecordNotFoundException("Category not found."));
 
-        newTask.setTodo(todo);
+        newTask.setCategory(category);
         return taskRepository.save(newTask);
     }
 
@@ -47,7 +47,8 @@ public class TaskServiceImpl implements TaskService{
         if (dbTask != null){
             dbTask.setComplete(task.isComplete());
             dbTask.setDescription(task.getDescription());
-            dbTask.setTodo(task.getTodo());
+            dbTask.setDeadLine(task.getDeadLine());
+            dbTask.setCategory(task.getCategory());
             taskRepository.save(dbTask);
         } else {
             throw new RecordNotFoundException("Task does not exist");

@@ -7,24 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 //Todo requires adding methods and attributes
 @Entity
-@Table(name = "todos" )
-public class Todo {
+@Table(name = "categories" )
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String title;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "todo", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "category", fetch = FetchType.EAGER)
     private List<Task> tasks;
     @ManyToOne
     @JoinColumn(name="user_name")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
-    public Todo (){
+    public Category(){
         tasks = new ArrayList<>();
     }
-    public Todo(long id, String title, List<Task> tasks, User user) {
+    public Category(long id, String title, List<Task> tasks, User user) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -64,7 +64,7 @@ public class Todo {
     }
 
     public void addTask(Task task){
-        task.setTodo(this);
+        task.setCategory(this);
         tasks.add(task);
     }
 

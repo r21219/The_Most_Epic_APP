@@ -1,6 +1,5 @@
 package cz.osu.project_todoholecekp_hrtonm.Model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,16 +17,16 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Todo> todos;
+    private List<Category> categories;
 
     public User() {
-        todos = new ArrayList<>();
+        categories = new ArrayList<>();
     }
 
-    public User(String name, String password, List<Todo> todo) {
+    public User(String name, String password, List<Category> category) {
         this.name = name;
         this.password = password;
-        this.todos = todo;
+        this.categories = category;
     }
 
     public String getName() {
@@ -46,20 +45,20 @@ public class User {
         this.password = password;
     }
 
-    public List<Todo> getTodo() {
-        return todos;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setTodo(List<Todo> todo) {
-        this.todos = todo;
+    public void setCategories(List<Category> category) {
+        this.categories = category;
     }
 
-    public void addTodo(Todo todo){
-        todo.setUser(this);
-        todos.add(todo);
+    public void addCategory(Category category){
+        category.setUser(this);
+        categories.add(category);
     }
 
-    public void removeTodo(Todo todo){
-        todos.remove(todo);
+    public void removeCategory(Category category){
+        categories.remove(category);
     }
 }

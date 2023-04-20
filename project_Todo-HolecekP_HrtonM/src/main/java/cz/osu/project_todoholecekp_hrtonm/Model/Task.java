@@ -1,6 +1,6 @@
 package cz.osu.project_todoholecekp_hrtonm.Model;
 
-
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -14,20 +14,21 @@ public class Task {
     private long id;
     @NotNull
     private boolean isComplete;
-
+    private LocalDate deadLine;
     private String description;
     @ManyToOne
-    @JoinColumn(name="todo_id")
+    @JoinColumn(name="category_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Todo todo;
+    private Category category;
     public Task() {
     }
 
-    public Task(long id, boolean isComplete, String description, Todo todo) {
+    public Task(long id, boolean isComplete, String description, Category category, LocalDate deadLine) {
         this.id = id;
         this.isComplete = false;
         this.description = description;
-        this.todo = todo;
+        this.category = category;
+        this.deadLine = deadLine;
     }
 
     public long getId() {
@@ -54,11 +55,19 @@ public class Task {
         this.description = description;
     }
 
-    public Todo getTodo() {
-        return todo;
+    public LocalDate getDeadLine() {
+        return deadLine;
     }
 
-    public void setTodo(Todo todo) {
-        this.todo = todo;
+    public void setDeadLine(LocalDate deadLine) {
+        this.deadLine = deadLine;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
