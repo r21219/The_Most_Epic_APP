@@ -17,7 +17,7 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user ", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Todo> todos;
 
     public User() {
