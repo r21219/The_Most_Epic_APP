@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-//Todo requires adding methods and attributes
+//Class for a table named User.
+//User contains multiple Categories per user
 @Entity
 @Table(name = "users")
 public class User {

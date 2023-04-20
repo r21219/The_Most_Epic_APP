@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
-//Todo requires adding methods and attributes
+//Class for a table named Task.
+//Task contains one Category
 @Entity
 @Table(name = "tasks")
 public class Task {

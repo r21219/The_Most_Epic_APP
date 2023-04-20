@@ -13,5 +13,6 @@ public interface TaskService {
     Task search(String title);
     void update(Task task) throws Exception;
     void delete(long id) throws Exception;
+    //Method for getting a sorted list of tasks based on input
     List<Task> sortedGet(SortingType sortingType);
 }

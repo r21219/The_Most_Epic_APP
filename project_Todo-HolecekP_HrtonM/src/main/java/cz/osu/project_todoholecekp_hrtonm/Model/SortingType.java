@@ -1,5 +1,5 @@
 package cz.osu.project_todoholecekp_hrtonm.Model;
-
+//Enum type class used for sorting methods in services
 public enum SortingType {
     CATEGORY_TITLE_ASC (1), CATEGORY_TITLE_DESC(2), CATEGORY_TASKS_COUNT_ASC(3), CATEGORY_TASKS_COUNT_DESC(4),
     TASK_TITLE_ASC(5), TASK_TITLE_DESC(6), TASK_DEADLINE_ASC(7), TASK_DEADLINE_DESC(8),

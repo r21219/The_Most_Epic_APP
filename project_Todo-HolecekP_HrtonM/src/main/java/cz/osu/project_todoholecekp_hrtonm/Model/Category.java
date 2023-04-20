@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-//Todo requires adding methods and attributes
+//Class for a table named Categories.
+//Categories contain multiple Tasks and one User for many Categories
 @Entity
 @Table(name = "categories" )
 public class Category {
