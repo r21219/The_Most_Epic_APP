@@ -1,5 +1,6 @@
 package cz.osu.project_todoholecekp_hrtonm.Service;
 
+import cz.osu.project_todoholecekp_hrtonm.Model.SortingType;
 import cz.osu.project_todoholecekp_hrtonm.Model.Task;
 import cz.osu.project_todoholecekp_hrtonm.Model.Category;
 
@@ -14,4 +15,5 @@ public interface CategoryService {
     void delete(long id) throws Exception;
     Category addTask(long categoryId, Task newTask);
     void deleteTask(long taskId);
+    List<Category> sortedGet(SortingType sortingType);
 }

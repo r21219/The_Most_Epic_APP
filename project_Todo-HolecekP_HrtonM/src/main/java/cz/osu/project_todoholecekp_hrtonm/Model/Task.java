@@ -15,7 +15,7 @@ public class Task {
     @NotNull
     private boolean isComplete;
     private LocalDate deadLine;
-    private String description;
+    private String title;
     @ManyToOne
     @JoinColumn(name="category_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -23,10 +23,10 @@ public class Task {
     public Task() {
     }
 
-    public Task(long id, boolean isComplete, String description, Category category, LocalDate deadLine) {
+    public Task(long id, boolean isComplete, String title, Category category, LocalDate deadLine) {
         this.id = id;
         this.isComplete = false;
-        this.description = description;
+        this.title = title;
         this.category = category;
         this.deadLine = deadLine;
     }
@@ -47,12 +47,12 @@ public class Task {
         isComplete = complete;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDate getDeadLine() {

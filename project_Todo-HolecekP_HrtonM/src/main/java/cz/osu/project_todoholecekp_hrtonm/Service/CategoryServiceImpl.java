@@ -2,6 +2,7 @@ package cz.osu.project_todoholecekp_hrtonm.Service;
 
 import cz.osu.project_todoholecekp_hrtonm.Exception.RecordNotFoundException;
 import cz.osu.project_todoholecekp_hrtonm.Exception.WrongInputFormatException;
+import cz.osu.project_todoholecekp_hrtonm.Model.SortingType;
 import cz.osu.project_todoholecekp_hrtonm.Model.Task;
 import cz.osu.project_todoholecekp_hrtonm.Model.Category;
 import cz.osu.project_todoholecekp_hrtonm.Model.User;
@@ -87,5 +88,23 @@ public class CategoryServiceImpl implements CategoryService {
         category.removeTask(task);
         taskRepository.deleteById(taskId);
         categoryRepository.save(category);
+    }
+
+    @Override
+    public List<Category> sortedGet(SortingType sortingType) {
+        List<Category> categories;
+
+        switch (sortingType){
+            case CATEGORY_TITLE_ASC -> categories = categoryRepository.findByOrderByTitleAsc();
+
+            case CATEGORY_TITLE_DESC -> categories = categoryRepository.findByOrderByTitleDesc();
+
+            case CATEGORY_TASKS_COUNT_ASC -> categories = categoryRepository.findAllByOrderByTasksSizeAsc();
+
+            case CATEGORY_TASKS_COUNT_DESC -> categories = categoryRepository.findAllByOrderByTasksSizeDesc();
+
+            default -> throw new WrongInputFormatException("Wrong order type put in");
+        }
+        return categories;
     }
 }

@@ -1,6 +1,8 @@
 package cz.osu.project_todoholecekp_hrtonm.Service;
 
 import cz.osu.project_todoholecekp_hrtonm.Exception.RecordNotFoundException;
+import cz.osu.project_todoholecekp_hrtonm.Exception.WrongInputFormatException;
+import cz.osu.project_todoholecekp_hrtonm.Model.SortingType;
 import cz.osu.project_todoholecekp_hrtonm.Model.Task;
 import cz.osu.project_todoholecekp_hrtonm.Model.Category;
 import cz.osu.project_todoholecekp_hrtonm.Repository.TaskRepository;
@@ -37,8 +39,8 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task search(String description) {
-        return taskRepository.findAllByDescriptionContainsIgnoreCase(description);
+    public Task search(String title) {
+        return taskRepository.findAllByTitleContainsIgnoreCase(title);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class TaskServiceImpl implements TaskService{
         Task dbTask = get(task.getId());
         if (dbTask != null){
             dbTask.setComplete(task.isComplete());
-            dbTask.setDescription(task.getDescription());
+            dbTask.setTitle(task.getTitle());
             dbTask.setDeadLine(task.getDeadLine());
             dbTask.setCategory(task.getCategory());
             taskRepository.save(dbTask);
@@ -63,5 +65,27 @@ public class TaskServiceImpl implements TaskService{
         } else {
             throw new RecordNotFoundException("Task does not exist");
         }
+    }
+
+    @Override
+    public List<Task> sortedGet(SortingType sortingType) {
+        List<Task> tasks;
+
+        switch (sortingType){
+            case TASK_TITLE_ASC -> tasks = taskRepository.findByOrderByTitleAsc();
+
+            case TASK_TITLE_DESC -> tasks = taskRepository.findByOrderByTitleDesc();
+
+            case TASK_DEADLINE_ASC -> tasks = taskRepository.findAllByOrderByDeadlineAsc();
+
+            case TASK_DEADLINE_DESC -> tasks = taskRepository.findAllByOrderByDeadlineDesc();
+
+            case TASK_COMPLETED_ASC -> tasks = taskRepository.findAllByOrderByCompleteAsc();
+
+            case TASK_COMPLETED_DESC -> tasks = taskRepository.findAllByOrderByCompleteDesc();
+
+            default -> throw new WrongInputFormatException("Wrong order type put in");
+        }
+        return tasks;
     }
 }
