@@ -13,7 +13,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
-    private boolean isComplete;
+    private boolean complete;
     private LocalDate deadLine;
     private String title;
     @ManyToOne
@@ -23,9 +23,9 @@ public class Task {
     public Task() {
     }
 
-    public Task(long id, boolean isComplete, String title, Category category, LocalDate deadLine) {
+    public Task(long id, boolean complete, String title, Category category, LocalDate deadLine) {
         this.id = id;
-        this.isComplete = false;
+        this.complete = false;
         this.title = title;
         this.category = category;
         this.deadLine = deadLine;
@@ -40,11 +40,11 @@ public class Task {
     }
 
     public boolean isComplete() {
-        return isComplete;
+        return complete;
     }
 
     public void setComplete(boolean complete) {
-        isComplete = complete;
+        this.complete = complete;
     }
 
     public String getTitle() {

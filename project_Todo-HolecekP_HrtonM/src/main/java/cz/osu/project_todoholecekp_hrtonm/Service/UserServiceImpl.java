@@ -4,7 +4,9 @@ import cz.osu.project_todoholecekp_hrtonm.Exception.RecordNotFoundException;
 import cz.osu.project_todoholecekp_hrtonm.Exception.WrongInputFormatException;
 import cz.osu.project_todoholecekp_hrtonm.Model.User;
 import cz.osu.project_todoholecekp_hrtonm.Repository.UserRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService{
     UserRepository userRepository;
 
@@ -26,7 +28,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User get(String name) {
+        System.out.println(name);
         return userRepository.findById(name).orElseThrow(() -> new RecordNotFoundException("User does not exist"));
+    }
+
+    @Override
+    public User register(String name, String password) {
+        return userRepository.findByNameAndPassword(name, password);
     }
 
     @Override

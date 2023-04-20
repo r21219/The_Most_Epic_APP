@@ -7,9 +7,10 @@ import cz.osu.project_todoholecekp_hrtonm.Model.Task;
 import cz.osu.project_todoholecekp_hrtonm.Model.Category;
 import cz.osu.project_todoholecekp_hrtonm.Repository.TaskRepository;
 import cz.osu.project_todoholecekp_hrtonm.Repository.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class TaskServiceImpl implements TaskService{
     TaskRepository taskRepository;
     CategoryRepository categoryRepository;

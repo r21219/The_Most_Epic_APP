@@ -9,9 +9,10 @@ import cz.osu.project_todoholecekp_hrtonm.Model.User;
 import cz.osu.project_todoholecekp_hrtonm.Repository.TaskRepository;
 import cz.osu.project_todoholecekp_hrtonm.Repository.CategoryRepository;
 import cz.osu.project_todoholecekp_hrtonm.Repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
     UserRepository userRepository;
