@@ -17,16 +17,49 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private List<Todo> todo;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user ", fetch = FetchType.EAGER)
+    private List<Todo> todos;
 
     public User() {
-        todo = new ArrayList<>();
+        todos = new ArrayList<>();
     }
 
     public User(String name, String password, List<Todo> todo) {
         this.name = name;
         this.password = password;
-        this.todo = todo;
+        this.todos = todo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Todo> getTodo() {
+        return todos;
+    }
+
+    public void setTodo(List<Todo> todo) {
+        this.todos = todo;
+    }
+
+    public void addTodo(Todo todo){
+        todo.setUser(this);
+        todos.add(todo);
+    }
+
+    public void removeTodo(Todo todo){
+        todos.remove(todo);
     }
 }

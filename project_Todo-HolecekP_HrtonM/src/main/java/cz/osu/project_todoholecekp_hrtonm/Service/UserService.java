@@ -7,7 +7,5 @@ import java.util.List;
 public interface UserService {
     User create(User newUser);
     User get(String name);
-    User search(String name);
-    void update(User User) throws Exception;
     void delete(String name) throws Exception;
 }

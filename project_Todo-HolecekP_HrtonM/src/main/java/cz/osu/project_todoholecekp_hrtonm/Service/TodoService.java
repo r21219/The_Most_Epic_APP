@@ -1,5 +1,6 @@
 package cz.osu.project_todoholecekp_hrtonm.Service;
 
+import cz.osu.project_todoholecekp_hrtonm.Model.Task;
 import cz.osu.project_todoholecekp_hrtonm.Model.Todo;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface TodoService {
     Todo search(String name);
     void update(Todo Todo) throws Exception;
     void delete(long id) throws Exception;
+    Todo addTask(long todoId, Task newTask);
+    void deleteTask(long taskId);
 }
