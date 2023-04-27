@@ -5,6 +5,7 @@ import cz.osu.project_todoholecekp_hrtonm.Service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class UsersController {
     private final UserService userService;

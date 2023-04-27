@@ -10,7 +10,7 @@ public interface CategoryService {
     Category create(Category newCategory);
     Category get(long id);
     List<Category> getAll();
-    Category search(String name);
+    List<Category> search(String name);
     void update(Category Category) throws Exception;
     void delete(long id) throws Exception;
     //Adds task to category and task tables

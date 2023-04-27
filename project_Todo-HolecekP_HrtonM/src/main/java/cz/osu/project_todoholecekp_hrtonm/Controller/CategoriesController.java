@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class CategoriesController {
     private final CategoryService categoryService;
@@ -20,7 +21,7 @@ public class CategoriesController {
     public Category create(@Valid @RequestBody Category newCategory) {
         return categoryService.create(newCategory);
     }
-    @GetMapping("/categories{id}")
+    @GetMapping("/categories/{id}")
     public Category get(@PathVariable("id") long id) {
         return categoryService.get(id);
     }
@@ -28,15 +29,15 @@ public class CategoriesController {
     public List<Category> getAll() {
         return categoryService.getAll();
     }
-    @GetMapping("/categories/search/{name}")
-    public Category search(@PathVariable("name") String name) {
-        return categoryService.search(name);
+    @GetMapping("/categories/search/{title}")
+    public List<Category> search(@PathVariable("title") String title) {
+        return categoryService.search(title);
     }
     @PutMapping("/categories")
     public void update(@Valid @RequestBody Category Category) throws Exception {
         categoryService.update(Category);
     }
-    @DeleteMapping("/categories{id}")
+    @DeleteMapping("/categories/{id}")
     public void delete(@PathVariable("id") long id) throws Exception {
         categoryService.delete(id);
     }
@@ -48,7 +49,7 @@ public class CategoriesController {
     public void deleteTask(@PathVariable("id") long taskId) {
         categoryService.deleteTask(taskId);
     }
-    @GetMapping("/categories/sort{value}")
+    @GetMapping("/categories/sort/{value}")
     public List<Category> sortedGet(@PathVariable("value") int sortingValue) {
         return categoryService.sortedGet(SortingType.values()[sortingValue]);
     }

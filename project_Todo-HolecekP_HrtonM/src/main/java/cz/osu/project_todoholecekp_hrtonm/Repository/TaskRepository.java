@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
     //Method for getting a task by a title
-    Task findAllByTitleContainsIgnoreCase(String title);
+    List<Task> findAllByTitleContainsIgnoreCase(String title);
     //Method for getting a list of tasks ordered alphabetically by title ascending
     List<Task> findByOrderByTitleAsc();
     //Method for getting a list of tasks ordered alphabetically by title descending

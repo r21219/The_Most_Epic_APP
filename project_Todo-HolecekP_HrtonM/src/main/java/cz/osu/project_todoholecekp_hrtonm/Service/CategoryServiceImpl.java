@@ -42,15 +42,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category search(String title) {
+    public List<Category> search(String title) {
         return categoryRepository.findAllByTitleContainsIgnoreCase(title);
     }
 
     @Override
-    public void update(Category Category){
-        Category dbCategory = get(Category.getId());
+    public void update(Category category){
+        Category dbCategory = get(category.getId());
         if (dbCategory != null){
-            dbCategory.setTitle(dbCategory.getTitle());
+            dbCategory.setTitle(category.getTitle());
             categoryRepository.save(dbCategory);
         } else{
             throw new RecordNotFoundException("Category does not exist");

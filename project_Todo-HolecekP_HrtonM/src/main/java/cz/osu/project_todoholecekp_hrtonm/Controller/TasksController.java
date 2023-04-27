@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class TasksController {
    private final TaskService taskService;
@@ -15,31 +16,31 @@ public class TasksController {
     public TasksController(TaskService taskService){
         this.taskService = taskService;
     }
-    @PostMapping("tasks")
+    @PostMapping("/tasks")
     public Task create(@Valid @RequestBody Task newTask) {
         return taskService.create(newTask);
     }
-    @GetMapping("tasks{id}")
+    @GetMapping("/tasks/{id}")
     public Task get(@PathVariable("id") long id) {
         return taskService.get(id);
     }
-    @GetMapping("tasks")
+    @GetMapping("/tasks")
     public List<Task> getAll() {
         return taskService.getAll();
     }
-    @GetMapping("tasks/search/{title}")
-    public Task search(@PathVariable("title") String title) {
+    @GetMapping("/tasks/search/{title}")
+    public List<Task> search(@PathVariable("title") String title) {
         return taskService.search(title);
     }
-    @PutMapping("tasks")
+    @PutMapping("/tasks")
     public void update(@Valid @RequestBody Task task) throws Exception {
         taskService.update(task);
     }
-    @DeleteMapping("tasks{id}")
+    @DeleteMapping("/tasks/{id}")
     public void delete(@PathVariable("id") long id) throws Exception {
         taskService.delete(id);
     }
-    @GetMapping("/tasks/sort{value}")
+    @GetMapping("/tasks/sort/{value}")
     public List<Task> sortedGet(@PathVariable("value") int sortingValue) {
         return taskService.sortedGet(SortingType.values()[sortingValue]);
     }

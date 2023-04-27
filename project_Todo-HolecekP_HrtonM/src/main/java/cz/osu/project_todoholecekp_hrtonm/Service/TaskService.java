@@ -10,7 +10,7 @@ public interface TaskService {
     Task create(Task newTask);
     Task get(long id);
     List<Task> getAll();
-    Task search(String title);
+    List<Task> search(String title);
     void update(Task task) throws Exception;
     void delete(long id) throws Exception;
     //Method for getting a sorted list of tasks based on input

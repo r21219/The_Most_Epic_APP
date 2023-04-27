@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task search(String title) {
+    public List<Task> search(String title) {
         return taskRepository.findAllByTitleContainsIgnoreCase(title);
     }
 
