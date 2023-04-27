@@ -25,8 +25,8 @@ public class UsersController {
     public void delete(@PathVariable("name") String name) throws Exception {
         userService.delete(name);
     }
-    @GetMapping("/users/{name}{password}")
-    public User register(@PathVariable("name") String name,@PathVariable("password") String password) {
-        return userService.register(name, password);
+    @GetMapping("/users/{name}/{password}")
+    public User login(@PathVariable("name") String name,@PathVariable("password") String password) {
+        return userService.login(name, password);
     }
 }

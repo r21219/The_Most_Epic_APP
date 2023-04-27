@@ -8,5 +8,5 @@ public interface UserService {
     User create(User newUser);
     User get(String name);
     void delete(String name) throws Exception;
-    User register(String name, String password);
+    User login(String name, String password);
 }

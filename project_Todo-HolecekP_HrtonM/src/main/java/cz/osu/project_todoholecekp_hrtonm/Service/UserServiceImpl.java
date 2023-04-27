@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User register(String name, String password) {
+    public User login(String name, String password) {
         return userRepository.findByNameAndPassword(name, password);
     }
 
