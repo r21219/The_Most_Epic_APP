@@ -81,14 +81,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteTask(long taskId) {
+    public Category deleteTask(long taskId) {
         Task task = taskRepository.findById(taskId).orElseThrow(() ->
                 new RecordNotFoundException("Task does not exist"));
         Category category = categoryRepository.findById(task.getCategory().getId())
                 .orElseThrow(() -> new RecordNotFoundException("Category not found"));
         category.removeTask(task);
         taskRepository.deleteById(taskId);
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     @Override

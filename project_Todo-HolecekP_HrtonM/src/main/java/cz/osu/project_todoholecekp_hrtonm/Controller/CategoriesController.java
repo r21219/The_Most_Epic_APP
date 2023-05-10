@@ -46,8 +46,8 @@ public class CategoriesController {
         return categoryService.addTask(categoryId, newTask);
     }
     @DeleteMapping("/categories/del/{id}")
-    public void deleteTask(@PathVariable("id") long taskId) {
-        categoryService.deleteTask(taskId);
+    public Category deleteTask(@PathVariable("id") long taskId) {
+        return categoryService.deleteTask(taskId);
     }
     @GetMapping("/categories/sort/{value}")
     public List<Category> sortedGet(@PathVariable("value") int sortingValue) {

@@ -16,7 +16,7 @@ public interface CategoryService {
     //Adds task to category and task tables
     Category addTask(long categoryId, Task newTask);
     //Deletes task from category and task tables
-    void deleteTask(long taskId);
+    Category deleteTask(long taskId);
     //Method for getting a sorted list of categories based on input
     List<Category> sortedGet(SortingType sortingType);
 }

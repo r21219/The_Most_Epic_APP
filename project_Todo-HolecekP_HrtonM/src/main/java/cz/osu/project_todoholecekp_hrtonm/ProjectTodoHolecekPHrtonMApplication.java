@@ -9,5 +9,5 @@ public class ProjectTodoHolecekPHrtonMApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectTodoHolecekPHrtonMApplication.class, args);
 	}
-		//zkouska
+
 }
