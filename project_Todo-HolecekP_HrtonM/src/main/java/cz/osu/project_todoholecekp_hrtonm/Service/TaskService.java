@@ -11,8 +11,8 @@ public interface TaskService {
     Task get(long id);
     List<Task> getAll();
     List<Task> search(String title);
-    void update(Task task) throws Exception;
+    Task  update(Task task) throws Exception;
     void delete(long id) throws Exception;
     //Method for getting a sorted list of tasks based on input
-    List<Task> sortedGet(SortingType sortingType);
+    List<Task> sortedGet(long categoryId,SortingType sortingType);
 }

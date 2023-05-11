@@ -33,15 +33,15 @@ public class TasksController {
         return taskService.search(title);
     }
     @PutMapping("/tasks")
-    public void update(@Valid @RequestBody Task task) throws Exception {
-        taskService.update(task);
+    public Task update(@Valid @RequestBody Task task) throws Exception {
+        return taskService.update(task);
     }
     @DeleteMapping("/tasks/{id}")
     public void delete(@PathVariable("id") long id) throws Exception {
         taskService.delete(id);
     }
-    @GetMapping("/tasks/sort/{value}")
-    public List<Task> sortedGet(@PathVariable("value") int sortingValue) {
-        return taskService.sortedGet(SortingType.values()[sortingValue]);
+    @GetMapping("/tasks/sort/{categoryId}/{value}")
+    public List<Task> sortedGet(@PathVariable("categoryId") long categoryId,@PathVariable("value") int sortingValue) {
+        return taskService.sortedGet(categoryId,SortingType.values()[sortingValue]);
     }
 }

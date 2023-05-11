@@ -45,14 +45,13 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public void update(Task task){
+    public Task update(Task task){
         Task dbTask = get(task.getId());
         if (dbTask != null){
             dbTask.setComplete(task.isComplete());
             dbTask.setTitle(task.getTitle());
             dbTask.setDeadLine(task.getDeadLine());
-            dbTask.setCategory(task.getCategory());
-            taskRepository.save(dbTask);
+            return taskRepository.save(dbTask);
         } else {
             throw new RecordNotFoundException("Task does not exist");
         }
@@ -69,21 +68,21 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public List<Task> sortedGet(SortingType sortingType) {
+    public List<Task> sortedGet(long categoryId,SortingType sortingType) {
         List<Task> tasks;
 
         switch (sortingType){
-            case TASK_TITLE_ASC -> tasks = taskRepository.findByOrderByTitleAsc();
+            case TASK_TITLE_ASC -> tasks = taskRepository.findByCategory_IdOrderByTitleAsc(categoryId);
 
-            case TASK_TITLE_DESC -> tasks = taskRepository.findByOrderByTitleDesc();
+            case TASK_TITLE_DESC -> tasks = taskRepository.findByCategory_IdOrderByTitleDesc(categoryId);
 
-            case TASK_DEADLINE_ASC -> tasks = taskRepository.findAllByOrderByDeadlineAsc();
+            case TASK_DEADLINE_ASC -> tasks = taskRepository.findByCategory_IdOrderByDeadlineAsc(categoryId);
 
-            case TASK_DEADLINE_DESC -> tasks = taskRepository.findAllByOrderByDeadlineDesc();
+            case TASK_DEADLINE_DESC -> tasks = taskRepository.findByCategory_IdOrderByDeadlineDesc(categoryId);
 
-            case TASK_COMPLETED_ASC -> tasks = taskRepository.findAllByOrderByCompleteAsc();
+            case TASK_COMPLETED_ASC -> tasks = taskRepository.findByCategory_IdOrderByCompleteAsc(categoryId);
 
-            case TASK_COMPLETED_DESC -> tasks = taskRepository.findAllByOrderByCompleteDesc();
+            case TASK_COMPLETED_DESC -> tasks = taskRepository.findByCategory_IdOrderByCompleteDesc(categoryId);
 
             default -> throw new WrongInputFormatException("Wrong order type put in");
         }

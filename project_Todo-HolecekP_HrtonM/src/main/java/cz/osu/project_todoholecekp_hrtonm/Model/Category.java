@@ -16,7 +16,7 @@ public class Category {
 
     private String title;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "category", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "category")
     private List<Task> tasks;
     @ManyToOne
     @JoinColumn(name="user_name")

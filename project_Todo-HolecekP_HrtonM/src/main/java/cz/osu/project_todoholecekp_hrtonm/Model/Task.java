@@ -16,14 +16,14 @@ public class Task {
     private boolean complete;
     private LocalDate deadLine;
     private String title;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Category category;
     public Task() {
     }
 
-    public Task(long id, boolean complete, String title, Category category, LocalDate deadLine) {
+    public Task(long id, String title, Category category, LocalDate deadLine) {
         this.id = id;
         this.complete = false;
         this.title = title;
