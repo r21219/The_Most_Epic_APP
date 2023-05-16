@@ -11,7 +11,7 @@ public interface CategoryService {
     Category get(long id);
     List<Category> getAll();
     List<Category> search(String name);
-    void update(Category Category) throws Exception;
+    Category update(Category Category) throws Exception;
     void delete(long id) throws Exception;
     //Adds task to category and task tables
     Category addTask(long categoryId, Task newTask);

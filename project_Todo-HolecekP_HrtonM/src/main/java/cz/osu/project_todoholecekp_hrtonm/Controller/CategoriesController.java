@@ -34,8 +34,8 @@ public class CategoriesController {
         return categoryService.search(title);
     }
     @PutMapping("/categories")
-    public void update(@Valid @RequestBody Category Category) throws Exception {
-        categoryService.update(Category);
+    public Category update(@Valid @RequestBody Category Category) throws Exception {
+        return categoryService.update(Category);
     }
     @DeleteMapping("/categories/{id}")
     public void delete(@PathVariable("id") long id) throws Exception {

@@ -47,11 +47,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void update(Category category){
+    public Category update(Category category){
         Category dbCategory = get(category.getId());
         if (dbCategory != null){
             dbCategory.setTitle(category.getTitle());
-            categoryRepository.save(dbCategory);
+            return categoryRepository.save(dbCategory);
         } else{
             throw new RecordNotFoundException("Category does not exist");
         }

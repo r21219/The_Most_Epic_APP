@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     //Method for getting a category by a title
+
+    /**
+    Method for getting a category by a title
+     **/
     List<Category> findAllByTitleContainsIgnoreCase(String title);
     //Method for getting a list of categories ordered alphabetically by title ascending
     List<Category> findByOrderByTitleAsc();
