@@ -19,4 +19,6 @@ public interface CategoryService {
     Category deleteTask(long taskId);
     //Method for getting a sorted list of categories based on input
     List<Category> sortedGet(SortingType sortingType);
+
+    List<Category> getByUser(String userName);
 }

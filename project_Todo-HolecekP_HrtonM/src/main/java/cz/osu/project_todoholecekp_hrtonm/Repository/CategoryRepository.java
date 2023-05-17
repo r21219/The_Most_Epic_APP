@@ -23,4 +23,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     //Method for getting a list of categories ordered by the amount of tasks a category contains descending
     @Query("SELECT t FROM Category t ORDER BY SIZE(t.tasks) DESC ")
     List<Category> findAllByOrderByTasksSizeDesc();
+
+    List<Category> findByUser_Name(String userName);
 }

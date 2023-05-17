@@ -108,4 +108,10 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return categories;
     }
+    @Override
+    public List<Category> getByUser(String userName) {
+        List<Category> categories;
+        categories = categoryRepository.findByUser_Name(userName);
+        return categories;
+    }
 }

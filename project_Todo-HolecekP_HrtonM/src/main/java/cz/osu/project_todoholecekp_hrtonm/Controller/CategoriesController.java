@@ -29,6 +29,10 @@ public class CategoriesController {
     public List<Category> getAll() {
         return categoryService.getAll();
     }
+    @GetMapping("/categories/user/{userName}")
+    public List<Category> getByUser(@PathVariable("userName") String userName) {
+        return categoryService.getByUser(userName);
+    }
     @GetMapping("/categories/search/{title}")
     public List<Category> search(@PathVariable("title") String title) {
         return categoryService.search(title);
