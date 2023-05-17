@@ -42,8 +42,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> search(String title) {
-        return categoryRepository.findAllByTitleContainsIgnoreCase(title);
+    public List<Category> search(String title,String userName) {
+        return categoryRepository.findAllByTitleContainsIgnoreCaseAndUser_Name(title,userName);
     }
 
     @Override
@@ -92,17 +92,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> sortedGet(SortingType sortingType) {
+    public List<Category> sortedGet(SortingType sortingType,String userName) {
         List<Category> categories;
 
         switch (sortingType){
-            case CATEGORY_TITLE_ASC -> categories = categoryRepository.findByOrderByTitleAsc();
+            case CATEGORY_TITLE_ASC -> categories = categoryRepository.findByUser_NameOrderByTitleAsc(userName);
 
-            case CATEGORY_TITLE_DESC -> categories = categoryRepository.findByOrderByTitleDesc();
+            case CATEGORY_TITLE_DESC -> categories = categoryRepository.findByUser_NameOrderByTitleDesc(userName);
 
-            case CATEGORY_TASKS_COUNT_ASC -> categories = categoryRepository.findAllByOrderByTasksSizeAsc();
+            case CATEGORY_TASKS_COUNT_ASC -> categories = categoryRepository.findAllByOrderByTasksSizeAsc(userName);
 
-            case CATEGORY_TASKS_COUNT_DESC -> categories = categoryRepository.findAllByOrderByTasksSizeDesc();
+            case CATEGORY_TASKS_COUNT_DESC -> categories = categoryRepository.findAllByOrderByTasksSizeDesc(userName);
 
             default -> throw new WrongInputFormatException("Wrong order type put in");
         }

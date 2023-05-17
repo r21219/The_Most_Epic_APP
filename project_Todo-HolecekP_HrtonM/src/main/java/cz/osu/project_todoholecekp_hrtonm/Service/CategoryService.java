@@ -10,7 +10,7 @@ public interface CategoryService {
     Category create(Category newCategory);
     Category get(long id);
     List<Category> getAll();
-    List<Category> search(String name);
+    List<Category> search(String name,String userName);
     Category update(Category Category) throws Exception;
     void delete(long id) throws Exception;
     //Adds task to category and task tables
@@ -18,7 +18,7 @@ public interface CategoryService {
     //Deletes task from category and task tables
     Category deleteTask(long taskId);
     //Method for getting a sorted list of categories based on input
-    List<Category> sortedGet(SortingType sortingType);
+    List<Category> sortedGet(SortingType sortingType,String userName);
 
     List<Category> getByUser(String userName);
 }

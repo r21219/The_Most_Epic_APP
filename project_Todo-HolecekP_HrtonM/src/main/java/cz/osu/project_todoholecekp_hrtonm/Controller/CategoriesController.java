@@ -33,9 +33,9 @@ public class CategoriesController {
     public List<Category> getByUser(@PathVariable("userName") String userName) {
         return categoryService.getByUser(userName);
     }
-    @GetMapping("/categories/search/{title}")
-    public List<Category> search(@PathVariable("title") String title) {
-        return categoryService.search(title);
+    @GetMapping("/categories/search/{title}/{username}")
+    public List<Category> search(@PathVariable("title") String title,@PathVariable("username") String userName) {
+        return categoryService.search(title,userName);
     }
     @PutMapping("/categories")
     public Category update(@Valid @RequestBody Category Category) throws Exception {
@@ -53,8 +53,8 @@ public class CategoriesController {
     public Category deleteTask(@PathVariable("id") long taskId) {
         return categoryService.deleteTask(taskId);
     }
-    @GetMapping("/categories/sort/{value}")
-    public List<Category> sortedGet(@PathVariable("value") int sortingValue) {
-        return categoryService.sortedGet(SortingType.values()[sortingValue]);
+    @GetMapping("/categories/sort/{value}/{username}")
+    public List<Category> sortedGet(@PathVariable("value") int sortingValue,@PathVariable("username") String userName) {
+        return categoryService.sortedGet(SortingType.values()[sortingValue],userName);
     }
 }
