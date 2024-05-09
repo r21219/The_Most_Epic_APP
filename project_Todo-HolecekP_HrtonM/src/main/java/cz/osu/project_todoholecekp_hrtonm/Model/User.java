@@ -2,18 +2,30 @@ package cz.osu.project_todoholecekp_hrtonm.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 //Class for a table named User.
 //User contains multiple Categories per user
 @Entity
 @Table(name = "users")
-public class User {
+@Data
+@Builder
+@AllArgsConstructor
+public class User implements UserDetails {
     @Id
     @NotNull
     private String name;
-
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @NotNull
     private String password;
 
@@ -29,37 +41,32 @@ public class User {
         this.password = password;
         this.categories = category;
     }
-
-    public String getName() {
+    @Override
+    public String getUsername() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
-
-    public void setCategories(List<Category> category) {
-        this.categories = category;
-    }
-
-    public void addCategory(Category category){
-        category.setUser(this);
-        categories.add(category);
-    }
-
-    public void removeCategory(Category category){
-        categories.remove(category);
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 }
